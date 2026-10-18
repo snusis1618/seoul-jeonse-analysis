@@ -1,0 +1,9 @@
+{
+  "python": "3.11.6 (tags/v3.11.6:8b6ee5b, Oct  2 2023, 14:57:12) [MSC v.1935 64 bit (AMD64)]",
+  "pandas": "3.0.6",
+  "numpy": "2.4.6",
+  "plotly": "7.1.0",
+  "rows": 1279501,
+  "monthly_aggregate_rows": 41756,
+  "annual_aggregate_rows": 3750
+}

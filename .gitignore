@@ -1,0 +1,6 @@
+자료/
+재실행결과/
+__pycache__/
+.ipynb_checkpoints/
+.browser-profile/
+*.pyc

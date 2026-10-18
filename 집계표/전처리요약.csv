@@ -1,0 +1,16 @@
+﻿item,value
+raw_N,3238096
+exact_removed_N,452458
+unique_record_N,2785638
+period_N,2725740
+date_invalid_N,0
+out_of_period_N,59898
+jeonse_N,1279501
+invalid_deposit_area_N,0
+analysis_N,1279501
+baseline_analysis_N,1457785
+analysis_removed_N,178284
+positive_monthly_rent_N,265
+unknown_district_N,2
+rent_type_values,"{'월세': 1754985, '전세': 1483101, '(결측)': 10}"
+dedup_rule,원본 23개 컬럼의 파싱된 문자열 값이 전부 같은 경우 첫 행만 유지

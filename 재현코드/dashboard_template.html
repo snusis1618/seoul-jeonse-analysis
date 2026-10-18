@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>서울시 전세 보증금 · 2021–2025</title><style>__CSS__</style></head>
+<body><main id="dashboard">
+<header class="page-header"><div><span class="eyebrow">스마트도시계획 · 데이터 분석</span><h1>서울시 전세 보증금 <span>2021–2025</span></h1></div></header>
+<section class="kpis" aria-label="선택 연도의 주요 수치">
+<div><span>㎡당 보증금 중앙값</span><strong id="kpi-price">—</strong><small>만원/㎡</small></div>
+<div><span>전세 보증금 중앙값</span><strong id="kpi-deposit">—</strong><small>만원</small></div>
+<div><span>2021년 대비</span><strong id="kpi-base">—</strong><small>㎡당 중앙값 · 동일 필터</small></div>
+<div><span>전년 대비</span><strong id="kpi-yoy">—</strong><small>㎡당 중앙값 · 동일 필터</small></div>
+<div><span>분석 관측 건수</span><strong id="kpi-n">—</strong></div>
+</section>
+<div class="selection-row"><span id="selection"></span><span id="render-status" role="status" aria-live="polite"></span></div>
+<section class="map-filter">
+<div class="map-section"><div class="section-heading"><h2 id="map-title">서울 25개 자치구</h2><span>자치구를 누르면 선택됩니다</span></div><div id="seoul-map" class="map-plot" aria-label="서울 자치구 지도"></div><div class="map-foot"><div id="size-legend"></div><span>원 면적 ∝ 관측 건수</span></div><p id="map-scope" class="micro"></p></div>
+<aside class="filters" aria-label="공통 필터"><div class="filter-title"><h2>분석 조건</h2><button id="reset-all">초기화</button></div>
+<label for="year-select">기준연도 </label><select id="year-select"></select>
+<label for="district-select">자치구</label><select id="district-select"></select>
+<label for="use-select">건물용도</label><select id="use-select"></select>
+<label for="area-select">임대면적</label><select id="area-select"></select>
+<div class="filter-divider"></div><label for="map-metric">지도 색상</label><select id="map-metric"><option value="price">㎡당 보증금 중앙값</option><option value="deposit">보증금 중앙값</option><option value="base">2021년 대비 변화율</option><option value="yoy">전년 대비 변화율</option></select>
+<button id="reset-district" class="wide-button">전체 서울로 돌아가기</button><p class="micro">추세는 동일 조건의 2021–2025년 전체를 표시합니다.</p></aside>
+</section>
+<nav class="tabs" aria-label="분석 화면"><button class="tab" data-tab="overview" aria-selected="false">전체 현황</button><button class="tab" data-tab="district" aria-selected="false">자치구 비교</button><button class="tab active" data-tab="use" aria-selected="true">건물용도 비교</button><button class="tab" data-tab="method" aria-selected="false">해석 방법</button></nav>
+<section id="overview" class="tab-panel"><div class="panel-heading"><h2>월별 가격 수준과 관측 규모</h2><span class="scope-label"></span></div><div class="chart-grid">
+<article><h3>월별 ㎡당 보증금 중앙값</h3><p class="chart-sub">중앙값 선 · 25–75백분위 구간</p><div id="monthly-price" class="plot"></div><p id="interpret-monthly" class="interpret"></p></article>
+<article><h3>월별 관측 건수</h3><p class="chart-sub"></p><div id="monthly-count" class="plot"></div><p id="interpret-count" class="interpret"></p></article>
+<article><h3>연도별 ㎡당 보증금 분포</h3><p class="chart-sub">상자: 25–75백분위 · 수염: 10–90백분위</p><div id="price-distribution" class="plot small-plot"></div><p id="interpret-distribution" class="interpret"></p></article>
+<article><h3>연도별 보증금 총액 분포</h3><p class="chart-sub">만원 · 면적당 가격과 다른 지표</p><div id="deposit-distribution" class="plot small-plot"></div><p id="interpret-deposit" class="interpret"></p></article>
+</div></section>
+<section id="district" class="tab-panel"><div class="panel-heading"><h2>자치구의 가격 수준과 변화율</h2><span class="scope-label"></span></div><div id="district-compare-prompt" class="district-compare-prompt" hidden><h3 id="district-compare-message"></h3><p>자치구 간 가격 수준과 변화율을 나란히 보려면 비교 범위를 전체 서울로 넓혀주세요.</p><button id="compare-all-districts">같은 용도·면적으로 25개 구 비교 →</button><small>기준연도·건물용도·면적 조건은 유지하고 자치구 선택만 해제합니다.</small></div><div id="district-comparison-charts" class="chart-grid">
+<article><h3>자치구별 연간 ㎡당 보증금 중앙값</h3><p class="chart-sub">연간 계약에서 직접 계산</p><div id="district-heatmap" class="plot tall-plot"></div><p id="interpret-district-level" class="interpret"></p></article>
+<article><h3>2021→2025년 관측 중앙값 변화율</h3><p class="chart-sub">† 2021년 또는 2025년 관측이 200건 미만인 구</p><div id="district-rank" class="plot tall-plot"></div><p id="interpret-district-change" class="interpret"></p></article>
+</div></section>
+<section id="use" class="tab-panel active"><div class="panel-heading"><h2>건물용도의 가격과 관측 구성</h2><div><button class="toggle active" data-use-mode="level">단가 수준</button><button class="toggle" data-use-mode="index">2021년=100</button></div></div><p class="micro">연간 중앙값을 직접 비교합니다. 전체 용도 선택 시 4개 용도를 비교하며, 특정 용도 선택 시 해당 용도만 표시합니다. <button class="text-button" id="compare-all-uses">전체 용도 비교</button></p><div class="chart-grid">
+<article><h3 id="use-price-title">건물용도별 연간 단가 수준</h3><p class="chart-sub" id="use-price-sub">가격 중앙값은 합산하거나 누적하지 않습니다.</p><div id="use-price" class="plot"></div><div id="use-price-buttons" class="use-series-buttons" role="group" aria-label="가격 그래프의 건물용도 표시 선택"></div><p id="interpret-use-price" class="interpret"></p></article>
+<article><h3>건물용도별 관측 구성비</h3><p class="chart-sub">연간 기록 행 비중 · 선택된 용도 내 합계 100%</p><div id="use-share" class="plot"></div><div id="use-share-buttons" class="use-series-buttons" role="group" aria-label="구성비 그래프의 건물용도 표시 선택"></div><p id="interpret-use-share" class="interpret"></p></article>
+</div></section>
+<section id="method" class="tab-panel"><div class="method-grid"><article><h2>자료·지표·전처리</h2><div id="method-data"></div><h3>현재 필터의 연도별 통계</h3><div id="method-year-table"></div><p id="method-selection-note" class="interpret"></p></article><article><h2>자료 신뢰성과 해석의 범위</h2><div id="method-quality"></div><h3>전체 서울의 연도별 반복 특성 점검</h3><div id="method-quality-table"></div><h3>경계와 대표점의 출처</h3><div id="method-geography"></div></article></div></section>
+<footer><span>관측 계약의 중앙값 · 공식 전세가격지수 / 동일 주택의 가격 변화가 아닙니다.</span><span id="footer-data"></span></footer>
+</main><script>__PLOTLY__</script><script id="dashboard-data" type="application/json">__DATA__</script><script>__APP__</script></body></html>

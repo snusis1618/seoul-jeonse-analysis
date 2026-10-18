@@ -1,0 +1,15 @@
+Seoul administrative boundary geography attribution
+
+Original geographic source: KOSTAT (Statistics Korea), administrative division geodata for Census, 2013.
+Redistributor and format converter: southkorea/seoul-maps. Contributor identified in the repository README: Lucy Park.
+Source documentation: https://github.com/southkorea/seoul-maps/blob/master/README.md
+Original downloaded GeoJSON: https://raw.githubusercontent.com/southkorea/seoul-maps/master/kostat/2013/json/seoul_municipalities_geo.json
+
+The repository README declares Apache License v2.0. A copy of the standard Apache 2.0 license terms is included as APACHE-2.0.txt.
+This records the redistributor's license declaration and does not independently establish every upstream condition for the original KOSTAT dataset.
+
+Changes in this project: shared-boundary-preserving simplification in EPSG:5179; display coordinate rounding; conversion to WGS84; derived representative points verified inside source and displayed district polygons; per-district validation and SHA-256 records.
+The downloaded source GeoJSON is preserved byte-for-byte. The derived files are plainly distinguished from it.
+
+The 2013 boundaries are schematic background geography, not a year-specific 2021-2025 legal boundary reconstruction.
+Representative points are aggregate-data display locations, not contract locations or district office locations.
